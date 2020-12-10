@@ -1,0 +1,96 @@
+<html>
+  <head>
+      <title>Compra</title>
+      <meta charset="utf-8">
+      <link rel="shortcut icon" type="icon" href="icon.jpg">
+      <link rel="stylesheet" type="text/css" href="./css/css.css">
+  </head>
+
+  <body >
+       <div class="container"><br>
+              <h2 class="topo"><center>Carrinho de Compra</center></h2><br>            
+              <table class="table">
+                <thead>
+                      <tr>
+                        <th>Produto  e  Descrição</th>
+                        <th>Marca</th>
+                        <th>Preço unitário</th>
+                        <th>Preço</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <th><input type="text" id="Produto" ></th>
+                                    <th><input type="text" id="Descrição" ></th>
+
+                                  </tr>    
+                            </table>
+                            <th><input type="text" id="Marca" ></th>
+                            <th><input type="number" id="coffeQuantidade" onclick="calcularcoffe()"></th>
+                        <th><input type="number" id="coffePreço" onclick="calcularcoffe()"></th>
+                        <th><p id="totalcoffe"></th>
+                      </tr>
+
+                      <tr>
+                          <td>
+                              <table>
+                                  <tr>
+                                      <th><input type="text" id="Produto" ></th>
+                                      <th><input type="text" id="Descrição" ></th>
+                                    </tr>    
+                              </table>
+                          </td>
+                          <th><input type="text" id="Marca" ></th>
+                          <th><input type="number" id="egeoQuantidade" onclick="calcularegeo()"></th>
+                        <th><input type="number" id="egeoPreço" onclick="calcularegeo()"></th>
+                        <th><p id="totalegeo"></p></th>
+                      </tr>
+
+                      <tr>
+                        <td>
+                            <table >
+                              <tr>
+                                      <th><input type="text" id="Produto" ></th>
+                                      <th><input type="text" id="Descrição" ></th>
+                                    </tr>    
+                              </table>
+                        </td>
+                        <th><input type="text" id="Marca" ></th>
+                        <th><input type="number" id="antonioQuantidade" onclick="calcularantonio()"></th>
+                        <th><input type="number" id="antonioPreço" onclick="calcularantonio()"></th>
+                        <th><p id="totalantonio"></p></th>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3"></td>
+                        <th>Valor total da compra:</th>
+                        <th><p id="soma "></p></th>
+                      </tr>
+
+                      <tr>
+                        <th colspan="4"></th>
+                        <th> <input type="button" class="btn btn-primary" value="adicionar " id="buttonMenu" onclick="produto_insert_db()">
+                      </tr>
+
+                      <tr>
+                        <th colspan="4"></th>
+                      <th><input type="button" class="btn btn-primary" value="Ver Produtos" id="buttonMenu"  onclick="ir_para_lista()">
+                      </tr>
+
+                    </tbody>
+                    <script>
+                         function ir_para_lista(){
+                        window.location.href = 'listar.html';
+                      }
+                    </script>
+                  </table>
+                </div>
+
+        <script type="text/javascript" src="js/js.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,83 @@
+<html>
+  <head>
+      <title>Compra</title>
+      <meta charset="utf-8">
+      <link rel="shortcut icon" type="icon" href="icon.jpg">
+      <link rel="stylesheet" type="text/css" href="css/css.css">
+  </head>
+
+  <body >
+       <div class="container"><br>
+              <h2 class="topo"><center>Carrinho de Compra</center></h2><br>            
+              <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Produto</th>
+                        <th>Descrição do Produto</th>
+                        <th>Preço unitário</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <th>Perfume Coffe</th>
+                                </tr>    
+                            </table> 
+                        <td>Coffee Man Desodorante Colônia, 100ml</td>
+                        <th><input type="number" id="coffeQuantidade" onclick="calcularcoffe()"></th>
+                        <th><input type="number" id="coffePreço" onclick="calcularcoffe()"></th>
+                        <th><p id="totalcoffe"></th>
+                      </tr>
+
+                      <tr>
+                          <td>
+                            <table>
+                                  <tr>
+                                      <th>Colonia Egeo</th>
+                                  </tr>    
+                              </table>
+                          </td>
+                        <td>Egeo Desodorante Colônia Blue 90ml</td>
+                        <th><input type="number" id="egeoQuantidade" onclick="calcularegeo()"></th>
+                        <th><input type="number" id="egeoPreço" onclick="calcularegeo()"></th>
+                        <th><p id="totalegeo"></p></th>
+                      </tr>
+
+                      <tr>
+                        <td>
+                             <table>
+                              <tr>
+                                      <th>Perfume Antonio Banderas</th>
+                                  </tr>    
+                              </table>
+                        </td>
+                        <td>Perfume Masculino The Golden Secret Antonio Banderas Eau de Toilette 200ml - Incolor</td>
+                        <th><input type="number" id="antonioQuantidade" onclick="calcularantonio()"></th>
+                        <th><input type="number" id="antonioPreço" onclick="calcularantonio()"></th>
+                        <th><p id="totalantonio"></p></th>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3"></td>
+                        <th>Valor total da compra:</th>
+                        <th><p id="totalCompra"></p></th>
+                      </tr>
+
+                      <tr>
+                        <th colspan="4"></th>
+
+                        <th><input type="button" class="btn btn-primary" value="  Efetuar Pagamento" id="buttonMenu" onclick="calcularTotal()">
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+        <script type="text/javascript" src="js/js.js"></script>
+  </body>
+
+</html>

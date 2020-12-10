@@ -1,0 +1,34 @@
+<html>
+    <head>
+      <title>Compra</title>
+      <meta charset="utf-8">
+      <link rel="shortcut icon" type="icon" href="icon.jpg">
+      <link rel="stylesheet" type="text/css" href="css/css.css">
+    </head>
+<body>
+    <div class="container"><br>
+    <h2 class="topo"><center>Menu</center></h2><br>
+    <table class="table table-dark table-striped">            
+    <center>
+        <br><br>
+            <input type="button" class="btn btn-primary" value="Incluir Itens" id="buttonMenu" onclick="ir_para_compra()">
+        <br><br><br>
+           <input type="button" class="btn btn-primary" value="Ver Produtos" id="buttonMenu"  onclick="ir_para_lista()">
+        <br><br><br>
+	<input type="button" class="btn btn-primary" value="Carrinho de Compras" id="buttonMenu"  onclick="ir_para_vendas()">
+    </center>
+    </table>
+	</div>
+	<script>
+		function ir_para_compra(){
+			window.location.href = "compra.html";
+		}
+		function ir_para_vendas(){
+			window.location.href = 'venda.html';
+		}
+		function ir_para_lista(){
+			window.location.href = 'listar.html';
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+.img{
+    width: 50%;
+}
+
+.neg{
+    font-weight: bold;
+    text-align: left;
+}
+
+.topo{
+    font-size: 30px;
+    color:rgb(0, 216, 245);
+    background-color: rgb(88, 88, 88);
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+      box-sizing: border-box;
+
+}
+
+body {
+
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#001E38;
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #000F1C),
+        color-stop(0.90, #001e38)
+    );
+
+color: rgb(0, 0, 0);
+background: #000F1C;
+box-shadow: 0 0 10px #010b13, 0 0 40px #00060a, 0 0 80px #000a11;
+}
+
+#buttonMenu{
+
+  position: relative;
+  display: inline-block;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 24px;
+  overflow: hidden;
+  transition: 0.2s;
+  left:0;
+  top:0;
+  height:50px;
+  width:400px;
+  text-align:center;
+}
+#buttonMenu:hover
+{
+color: white;
+background: #000F1C;
+box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+}
+.table{background-color:rgb(54, 151, 143)!important} 
+table{border:3px solid}
