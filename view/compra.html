@@ -24,45 +24,45 @@
                         <td>
                             <table>
                                 <tr>
-                                    <th><input type="text" id="Produto" ></th>
-                                    <th><input type="text" id="Descrição" ></th>
+                                    <th><input type="text" id="nome" ></th>
+                                    <th><input type="text" id="descricao" ></th>
 
                                   </tr>    
                             </table>
                             <th><input type="text" id="Marca" ></th>
-                            <th><input type="number" id="coffeQuantidade" onclick="calcularcoffe()"></th>
-                        <th><input type="number" id="coffePreço" onclick="calcularcoffe()"></th>
-                        <th><p id="totalcoffe"></th>
+                            <th><input type="number" id="quantidade1" onclick="calcular1()"></th>
+                        <th><input type="number" id="preco1" onclick="calcular1()"></th>
+                        <th><p id="total1"></th>
                       </tr>
 
                       <tr>
                           <td>
                               <table>
                                   <tr>
-                                      <th><input type="text" id="Produto" ></th>
-                                      <th><input type="text" id="Descrição" ></th>
+                                    <th><input type="text" id="nome" ></th>
+                                    <th><input type="text" id="descricao" ></th>
                                     </tr>    
                               </table>
                           </td>
                           <th><input type="text" id="Marca" ></th>
-                          <th><input type="number" id="egeoQuantidade" onclick="calcularegeo()"></th>
-                        <th><input type="number" id="egeoPreço" onclick="calcularegeo()"></th>
-                        <th><p id="totalegeo"></p></th>
+                          <th><input type="number" id="quantidade2" onclick="calcular2()"></th>
+                          <th><input type="number" id="preco2" onclick="calcular2()"></th>
+                          <th><p id="total2"></th>
                       </tr>
 
                       <tr>
                         <td>
                             <table >
                               <tr>
-                                      <th><input type="text" id="Produto" ></th>
-                                      <th><input type="text" id="Descrição" ></th>
+                                <th><input type="text" id="nome" ></th>
+                                <th><input type="text" id="descricao" ></th>
                                     </tr>    
                               </table>
                         </td>
                         <th><input type="text" id="Marca" ></th>
-                        <th><input type="number" id="antonioQuantidade" onclick="calcularantonio()"></th>
-                        <th><input type="number" id="antonioPreço" onclick="calcularantonio()"></th>
-                        <th><p id="totalantonio"></p></th>
+                        <th><input type="number" id="quantidade3" onclick="calcular3()"></th>
+                        <th><input type="number" id="preco3" onclick="calcular3()"></th>
+                        <th><p id="total3"></th>
                       </tr>
 
                       <tr>
@@ -73,12 +73,12 @@
 
                       <tr>
                         <th colspan="4"></th>
-                        <th> <input type="button" class="btn btn-primary" value="adicionar " id="buttonMenu" onclick="produto_insert_db()">
+                      <th><input type="button" value="Ver Produtos" id="buttonMenu"  onclick="ir_para_lista()">
                       </tr>
 
                       <tr>
                         <th colspan="4"></th>
-                      <th><input type="button" class="btn btn-primary" value="Ver Produtos" id="buttonMenu"  onclick="ir_para_lista()">
+                      <th><input type="button"  value="Sair" id="buttonMenu"  onclick="sair()">    
                       </tr>
 
                     </tbody>

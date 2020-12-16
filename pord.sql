@@ -38,10 +38,10 @@ insert into Produtos values
 (default,"shorts", "preto e branco", "puma");
 
 insert into Comercializar values
-(1, "São Paulo", "Lucas", "venda"),
-(2, "São Paulo", "Bianca", "compra"),
-(3, "São Paulo", "Lucas", "venda"),
-(4, "São Paulo", "Marcos", "compra");
+(default, "São Paulo", "Lucas", "venda"),
+(default, "São Paulo", "Bianca", "compra"),
+(default, "São Paulo", "Lucas", "venda"),
+(default, "São Paulo", "Marcos", "compra");
 
 insert into Realizada values 
 (1, 4, "39,99", "20"),

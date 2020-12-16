@@ -11,12 +11,14 @@
     <table class="table table-dark table-striped">            
     <center>
         <br><br>
-            <input type="button" class="btn btn-primary" value="Incluir Itens" id="buttonMenu" onclick="ir_para_compra()">
+            <input type="button" value="Incluir Itens" id="buttonMenu" onclick="ir_para_compra()">
         <br><br><br>
-           <input type="button" class="btn btn-primary" value="Ver Produtos" id="buttonMenu"  onclick="ir_para_lista()">
+           <input type="button"  value="Ver Produtos" id="buttonMenu"  onclick="ir_para_lista()">
         <br><br><br>
-	<input type="button" class="btn btn-primary" value="Carrinho de Compras" id="buttonMenu"  onclick="ir_para_vendas()">
-    </center>
+    <input type="button"  value="Carrinho de Compras" id="buttonMenu"  onclick="ir_para_vendas()">
+    <br><br><br>
+    <input type="button"  value="Sair" id="buttonMenu"  onclick="sair()">
+</center>
     </table>
 	</div>
 	<script>
@@ -29,6 +31,8 @@
 		function ir_para_lista(){
 			window.location.href = 'listar.html';
 		}
-	</script>
+       
+    </script>
+    <script type="text/javascript" src="js/js.js"></script>
 </body>
 </html>

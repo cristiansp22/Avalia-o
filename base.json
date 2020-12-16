@@ -34,7 +34,7 @@
 		{
 			"name" : "Comercializar",
 			"attributes" : [
-				"id_produto",
+				"id_com",
 				"local",
 				"reponsavel",
 				"tipo"

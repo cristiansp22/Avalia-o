@@ -1,0 +1,43 @@
+<html>
+  <head>
+      <title>Listinha</title>
+      <meta charset="utf-8">
+      <link rel="shortcut icon" type="icon" href="icon.jpg">
+      <link rel="stylesheet" type="text/css" href="./css/css.css">
+  </head>
+
+  <body onload="listar(), listar2(), listar3()">
+       <div class="container"><br>
+              <h2 class="topo"><center>Notinha Fiscal</center></h2><br>            
+            <center>
+                <table class="table">
+              
+                  <thead>
+                    <h2 class="topo"><center>venda</center></h2><br>            
+                      <tr>
+                         
+                          <th>Id do Porduto</th>
+                          <th>Id do Responsavel</th>
+                          <th>Quantidade</th>
+                          <th>Perço</th>
+  
+                      
+                      </tr>
+                  </thead>
+                  <tbody id="bodyRealizar">
+                  </tbody>
+                </table>
+                <input type="button"  value="finalizar" id="buttonMenu"  onclick="ir_para_vendas()"> 
+                <br><br><br>
+              	<input type="button"  value="Voltar" id="buttonMenu"  onclick="sair()">    
+              </center>
+                </div>
+                <script>
+                  function ir_para_vendas(){
+                    window.location.href = 'home.html';
+                  }    
+                  </script>
+        <script type="text/javascript" src="js/js.js"></script>
+  </body>
+
+</html>

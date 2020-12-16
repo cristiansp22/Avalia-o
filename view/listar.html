@@ -1,0 +1,85 @@
+<html>
+  <head>
+      <title>Listinha</title>
+      <meta charset="utf-8">
+      <link rel="shortcut icon" type="icon" href="icon.jpg">
+      <link rel="stylesheet" type="text/css" href="./css/css.css">
+  </head>
+
+  <body onload="listar(), listar2(), listar3()">
+       <div class="container"><br>
+              <h2 class="topo"><center>listar</center></h2><br>            
+              <center>
+              <table class="table">
+            
+                <thead>
+                  <h2 class="topo"><center>Produtos</center></h2><br>            
+
+                    <tr>
+                       
+                        <th>Id</th>
+                        <th>Produto</th>
+                        <th>Descricao</th>
+                        <th>Marca</th>
+
+                    
+                    </tr>
+                </thead>
+                <tbody id="bodyProdutos">
+                </tbody>
+              </table>
+            </center>
+
+            <center>
+              <table class="table">
+            
+                <thead>
+                  <h2 class="topo"><center>Responsavel</center></h2><br>            
+
+                    <tr>
+                       
+                        <th>Id do Responsavel</th>
+                        <th>Local</th>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+
+                    
+                    </tr>
+                </thead>
+                <tbody id="bodyComercializar">
+                </tbody>
+              </table>
+            </center>
+
+            <center>
+                <table class="table">
+              
+                  <thead>
+                    <h2 class="topo"><center>vendas</center></h2><br>            
+                      <tr>
+                         
+                          <th>Id do Porduto</th>
+                          <th>Id do Responsavel</th>
+                          <th>Quantidade</th>
+                          <th>Perço</th>
+  
+                      
+                      </tr>
+                  </thead>
+                  <tbody id="bodyRealizar">
+                  </tbody>
+                </table>
+                <input type="button"  value="Carrinho de Compras" id="buttonMenu"  onclick="ir_para_vendas()"> 
+                <br><br><br>
+              	<input type="button"  value="Sair" id="buttonMenu"  onclick="sair()">    
+              </center>
+                </div>
+                <script>
+                  function ir_para_vendas(){
+                    window.location.href = 'venda.html';
+                  }    
+                  </script>
+        <script type="text/javascript" src="js/js.js"></script>
+  </body>
+
+</html>

@@ -20,10 +20,10 @@
 			$this->local = $local;
 		}
 
-		function getReponsavel(){
+		function getResponsavel(){
 			return $this->reponsavel;
 		}
-		function setReponsavel($reponsavel){
+		function setResponsavel($reponsavel){
 			$this->reponsavel = $reponsavel;
 		}
 
@@ -36,19 +36,19 @@
 	}
 
 	class ComercializarDAO {
-		function create($Comercializar) {
+		function create($comercializar) {
 			$result = array();
 
 			try {
-				$query = "INSERT INTO Comercializar (default, '".$Comercializar->getLocal()."', '".$Comercializar->getResponsavel()."','".$Comercializar->getTipo()."')";
+				$query = "INSERT INTO Comercializar  VALUES (default, '".$comercializar->getLocal()."', '".$comercializar->getResponsavel()."','".$comercializar->getTipo()."')";
 
 				$con = new Connection();
 
 				if(Connection::getInstance()->exec($query) >= 1){
 					$result["id_com"] = connection::getInstance()->lastInsertId();
-					$result["local"] = $local->getLocal();
-					$result["responsavel"] = $reponsavel->getReponsavel();
-					$result["tipo"] = $tipo>getTipo();
+					$result["local"] = $comercializar->getLocal();
+					$result["responsavel"] = $comercializar->getResponsavel();
+					$result["tipo"] = $comercializar->getTipo();
 				}
 
 				$con = null;
@@ -70,12 +70,12 @@
 				$resultSet = Connection::getInstance()->query($query);
 
 				while($linha = $resultSet->fetchObject()){
-					$Comercializar= new Comercializar();
-					$Comercializar->setId_com($linha->id_com);
-					$Comercializar->setLocal(utf8_encode($linha->local));//(utf8_encode() é para aceitar pontuação 
-					$Comercializar->setReponsavel(utf8_encode($linha->responsavel));
-					$Comercializar->setTipo($linha->tipo);
-					$result[] = $Comercializar;
+					$comercializar= new Comercializar();
+					$comercializar->setId_com($linha->id_com);
+					$comercializar->setLocal(utf8_encode($linha->local));//(utf8_encode() é para aceitar pontuação 
+					$comercializar->setResponsavel(utf8_encode($linha->responsavel));
+					$comercializar->setTipo($linha->tipo);
+					$result[] = $comercializar;
 
 				}
 
@@ -98,12 +98,12 @@
 				$resultSet = Connection::getInstance()->query($query);
 
 				while($linha = $resultSet->fetchObject()){
-					$Comercializar= new Comercializar();
-					$Comercializar->setId_com($linha->id_com);
-					$Comercializar->setlocal(utf8_encode($linha->local));
-					$Comercializar->setReponsavel(utf8_encode($linha->responsavel));
-					$Comercializar->setTipo($linha->tipo);
-					$result[] = $Comercializar;
+					$comercializar= new Comercializar();
+					$comercializar->setId_com($linha->id_com);
+					$comercializar->setlocal(utf8_encode($linha->local));
+					$comercializar->setResponsavel(utf8_encode($linha->responsavel));
+					$comercializar->setTipo($linha->tipo);
+					$result[] = $comercializar;
 				}
 
 				$con = null;
@@ -114,12 +114,12 @@
 			return $result;
 		}
 
-		function update($Comercializar) {
+		function update($comercializar) {
 			$result = array();
-			$id_com = $Comercializar-> getId_com();
-			$local = $Comercializar-> getLocal();
-			$reponsavel = $Comercializar-> getReponsavel();
-			$tipo = $Comercializar-> getTipo();
+			$id_com = $comercializar-> getId_com();
+			$local = $comercializar-> getLocal();
+			$responsavel = $comercializar-> getResponsavel();
+			$tipo = $comercializar-> getTipo();
 
 			try {
 				$query = "UPDATE Comercializar SET local = '$local', responsavel = '$responsavel', tipo = '$tipo'  WHERE id_com = $id_com";
@@ -128,9 +128,10 @@
 				$status = Connection::getInstance()->prepare($query);
 
 				if($status->execute()){
-					$result = $Comercializar;
+					$result = $comercializar;
 				}else{
 					$result["erro"] = "Não foi possivel atualizar os dados";
+					echo $query;
 				}
 
 				$con = null;
@@ -141,7 +142,7 @@
 			return $result;
 		}
 
-		function delete( $id_com) {
+		function delete($id_com) {
 			$result = array();
 
 			try {
@@ -153,6 +154,7 @@
 					$result["msg"] = "Produto excluido!!!";
 				}else{
 					$result["Erro"] = "Produto não excluido!!!";
+					echo $query;
 				}
 
 				$con = null;

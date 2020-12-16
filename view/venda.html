@@ -12,68 +12,72 @@
               <table class="table">
                     <thead>
                       <tr>
-                        <th>Produto</th>
-                        <th>Descrição do Produto</th>
-                        <th>Preço unitário</th>
-                        <th>Quantidade</th>
-                        <th>Preço</th>
+                        <th>local</th>
+                        <th>Responsavel</th>
+                        <th>tipo</th>
                       </tr>
                     </thead>
+                  
                     <tbody>
 
-                      <tr>
-                        <td>
-                            <table>
-                                <tr>
-                                    <th>Perfume Coffe</th>
-                                </tr>    
-                            </table> 
-                        <td>Coffee Man Desodorante Colônia, 100ml</td>
-                        <th><input type="number" id="coffeQuantidade" onclick="calcularcoffe()"></th>
-                        <th><input type="number" id="coffePreço" onclick="calcularcoffe()"></th>
-                        <th><p id="totalcoffe"></th>
+                      <tr>       
+                        <th><input type="text" id="local" ></th>
+                        <th><input type="text" id="responsavel"></th>
+                        <th><input type="text" id="tipo"></th>
+
                       </tr>
 
+                    <thead>
                       <tr>
-                          <td>
-                            <table>
-                                  <tr>
-                                      <th>Colonia Egeo</th>
-                                  </tr>    
-                              </table>
-                          </td>
-                        <td>Egeo Desodorante Colônia Blue 90ml</td>
-                        <th><input type="number" id="egeoQuantidade" onclick="calcularegeo()"></th>
-                        <th><input type="number" id="egeoPreço" onclick="calcularegeo()"></th>
-                        <th><p id="totalegeo"></p></th>
-                      </tr>
+                         
+                          <th>Id do Porduto</th>
+                          <th>Id do Responsavel</th>
+                          <th>Quantidade</th>
+                          <th>Perço</th>
 
-                      <tr>
-                        <td>
-                             <table>
-                              <tr>
-                                      <th>Perfume Antonio Banderas</th>
-                                  </tr>    
-                              </table>
-                        </td>
-                        <td>Perfume Masculino The Golden Secret Antonio Banderas Eau de Toilette 200ml - Incolor</td>
-                        <th><input type="number" id="antonioQuantidade" onclick="calcularantonio()"></th>
-                        <th><input type="number" id="antonioPreço" onclick="calcularantonio()"></th>
-                        <th><p id="totalantonio"></p></th>
                       </tr>
+                  </thead>
+                  <tr>       
+                    <th><input type="number" id="id_produto" ></th>
+                    <th><input type="number" id="id_com" ></th>
+                    <th><input type="number" id="quantidade"></th>
+                    <th><input type="number" id="preco"></th>
+                    
+                  </tr>
 
                       <tr>
                         <td colspan="3"></td>
                         <th>Valor total da compra:</th>
-                        <th><p id="totalCompra"></p></th>
+                        <th><p id="total"></p></th>
                       </tr>
 
                       <tr>
                         <th colspan="4"></th>
-
-                        <th><input type="button" class="btn btn-primary" value="  Efetuar Pagamento" id="buttonMenu" onclick="calcularTotal()">
+                        <th> <input type="button"  value="adicionar venda " id="buttonMenu" onclick="adicionar2()">
                       </tr>
+
+                      <tr>
+                        <th colspan="4"></th>
+                        <th> <input type="button" value="adicionar responsavel " id="buttonMenu" onclick="adicionar3()">
+                        </tr>
+
+
+                        <tr>
+                          <th colspan="4"></th>
+                          <th> <input type="button"  value="adicionar " id="buttonMenu" onclick="adicionar2()">
+                          </tr>
+
+                      <tr>
+                        <th colspan="4"></th>
+                      <th><input type="button"  value="Efetuar Pagamento" id="buttonMenu" onclick="ir_para_nota()">
+                      </tr>
+
                     </tbody>
+                    <script>
+                         function ir_para_nota(){
+                        window.location.href = 'nota.html';
+                      }
+                    </script>
                   </table>
                 </div>
 

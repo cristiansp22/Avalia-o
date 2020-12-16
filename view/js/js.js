@@ -1,121 +1,270 @@
 //Carrega as variáveis globais
-const descr = document.querySelector("#Decrição"); //Entrada
-const quant = document.querySelector("#Quantidade"); //Entrada
-const pç = document.querySelector("#Preço"); //Entrada
-const somaF = document.querySelector("#somaTotal"); //Saída
-const nomeP = document.querySelector("#nome");//entrada
-const mar = document.querySelector("#marca");//entrada
-const valor = document.querySelector("#valor"); //Saída
-const corpoTabela = document.querySelector("#tableBody"); //Saída
-const add = document.querySelector("#adicionar"); //Processamento
+const tableProduto = document.querySelector("#bodyProdutos");
+const tableRealizar = document.querySelector("#bodyRealizar");
+const tableComercalizar= document.querySelector("#bodyComercializar");
+const msg = document.querySelector("#mensagem");
+const xhr = new XMLHttpRequest();
+const urlComercalizar = "http://localhost/avaliacao/src/controll/routes/route.Comercializar.php";
+const urlProdutos = "http://localhost/avaliacao/src/controll/routes/route.Produtos.php";
+const urlRealizar = "http://localhost/avaliacao/src/controll/routes/route.Realizada.php";
+let contTel = 0;
+let tels = [];
 
-function produto_insert_db(data)
-{
-		//Se obteve a resposta explora os dados recebidos
-		data.forEach((val) => {
-			let armazenar = document.createElement("input");
-			armazenar.value = val.armazenar;
-			descr.value = val.descr;
-			mar.value = val.mar;
-			nomeP.appendChild(armazenar);
-		})//Se obteve erro no processo exibe no console do navegador
-	.catch(function (error) {
-		console.error(error.message);
-	});
-}
-
-function listar(_id)
-{
-	//Variáveis que guardam os dados do produto que a pessoa quer comprar
-	var id_prod_com = document.getElementById('id_prod_com');
-    id_prod_com.value = _id;
+function listar() {
+   
+	fetch(urlProdutos)
+		.then(function (resp) {
+			//Obtem a resposta da URL no formato JSON
+			if (!resp.ok)
+				throw new Error("Erro ao executar requisição: " + resp.status);
+			return resp.json();
+		})
+		.then(function (data) {
+			//Se obteve a resposta explora os dados recebidos
+			data.forEach((val) => {
+				let row = document.createElement("tr");
+				row.innerHTML = `<tr><td>${val.id_produto}</td>`;
+				row.innerHTML += `<td>${val.nome}</td>`;
+				row.innerHTML += `<td>${val.descricao}</td>`;
+				row.innerHTML += `<td>${val.marca}</td>`;
+				row.innerHTML += `<td style="padding:3px"><button  id="buttonMenu" onclick='delProduto(this)'>Del</button></td></tr>`;
+				tableProduto.appendChild(row);
+			});
+		}) //Se obteve erro no processo exibe no console do navegador
+		.catch(function (error) {
+			console.error(error.message);
+		});
     
-    db.transaction(function(tx) {
-        tx.executeSql('SELECT * FROM produto WHERE id=?', [_id], function (tx, resultado) {
-            var rows = resultado.rows[0];
+}
 
-            //Atribui o valor das variáveis no campo pra que o usuário não se preocupe em digitar o ID do produto e o Valor individual do produto
-            id_prod_com.value = rows.id;
-            nome_compra.value = rows.nome;
-            valor_unit_compra.value = rows.preco;
-            qtd_compra.value = '';
+function listar2() {
+
+	fetch(urlComercalizar)
+		.then(function (resp) {
+            //Obtem a resposta da URL no formato JSON
+			if (!resp.ok)
+                throw new Error("Erro ao executar requisição: " + resp.status);
+                
+			return resp.json();
+		})
+		.then(function (data) {
+            console.log(data);
+			//Se obteve a resposta explora os dados recebidos
+			data.forEach((val) => {
+				let row = document.createElement("tr");
+				row.innerHTML = `<tr><td>${val.id_com}</td>`;
+				row.innerHTML += `<td>${val.local}</td>`;
+				row.innerHTML += `<td>${val.responsavel}</td>`;
+				row.innerHTML += `<td>${val.tipo}</td>`;
+				row.innerHTML += `<td style="padding:3px"><button  id="buttonMenu" onclick='delComercializar(this)'>Del</button></td></tr>`;
+				tableComercalizar.appendChild(row);
+			});
+		}) //Se obteve erro no processo exibe no console do navegador
+		.catch(function (error) {
+			console.error(error.message);
+		});
+    
+}
+
+function listar3() {
+        fetch(urlRealizar)
+            .then(function (resp) {
+                //Obtem a resposta da URL no formato JSON
+                if (!resp.ok)
+                    throw new Error("Erro ao executar requisição: " + resp.status);
+                return resp.json();
+            })
+            .then(function (data) {
+                //Se obteve a resposta explora os dados recebidos
+                data.forEach((val) => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `<tr><td>${val.id_produto}</td>`;
+                    row.innerHTML = `<tr><td>${val.id_com}</td>`;
+                    row.innerHTML += `<td>${val.quantidade}</td>`;
+                    row.innerHTML += `<td>${val.preco}</td>`;
+					row.innerHTML += `<td style="padding:3px"><button  id="buttonMenu" onclick='delRealizar(this)'>Del</button"></td></tr>`;
+                    tableRealizar.appendChild(row);
+                });
+            }) //Se obteve erro no processo exibe no console do navegador
+            .catch(function (error) {
+                console.error(error.message);
+            });
+}
+
+function sair() {
+    window.location.href = "../";
+}
+
+function adicionar() {
+    let url = "http://localhost/avaliacao/src/controll/routes/route.Produtos.php";
+    let nomeP = document.querySelector("#nome");
+	let descr = document.querySelector("#descricao");
+	let mar = document.querySelector("#marca");
+    if (nomeP.value != "" && descr.value != ""  && mar.value != "") {
+        let dados = new FormData();
+        dados.append("nome", nomeP.value);
+		dados.append("descricao", descr.value);
+		dados.append("marca", mar.value);
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                   alert= resp.erro;
+                } else {
+                 alert = "produto criada com sucesso.";
+                }
+                setTimeout(() => { window.location.reload(); }, 3000);
+            }
         });
-    });
-
-	$("#listar").hide();
-	$("#comprar").show();
+        xhr.open("POST", url);
+        xhr.send(dados);
+    } else {
+		alert = "Favor preencha.";
+		alert ="Mensagens do sistema";
+    }
 }
 
-function compra(tx,results)
-{
-	$("#compra_listagem").empty();
-	var len = results.rows.length;
-
-	//Variavel pra armazenar o valor total da compra
-	var valorCalculado = 0;
-
-	for(var i = 0; i <len;i++)
-	{
-	$("#compra_listagem").append("<tr class='compra_item_lista'>"+
-		"<td><h3>" + results.rows.item(i).id + "</h3></td>"+
-        "<td><h3>" + results.rows.item(i).nomeP + "</h3></td>"+
-        "<td><h3>" + results.rows.item(i).mar + "</h3></td>"+
-		"<td><h3>" + results.rows.item(i).descr + "</h3></td>"+
-		"<td><h3>" + results.rows.item(i).quant + "</h3></td>"+
-		"<td class='valor-calculado'><h3>" + results.rows.item(i).valor_total + "</h3></td>"
-		+ "</tr>");
-	}
-
-	//Função que atribui o valor da compra individual na compra total
-    $( ".valor-calculado" ).each(function() {
-      	valorCalculado += parseFloat($( this ).text());
-    });
-
-	//Mostrando o valor total da compra no campo embaixo da listagem de carrinho
-	var totalcampo = document.getElementById('total');
-	totalcampo.value = parseFloat(valorCalculado).toFixed(2);
+function adicionar2() {
+    let url = "http://localhost/avaliacao/src/controll/routes/route.Comercializar.php";
+    let lo = document.querySelector("#local");
+	let res = document.querySelector("#responsavel");
+	let ti = document.querySelector("#tipo");
+    if (lo.value != "" && res.value != ""  && ti.value != "") {
+        let dados = new FormData();
+        dados.append("local", lo.value);
+		dados.append("responsavel", res.value);
+		dados.append("tipo", ti.value);
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                   alert= resp.erro;
+                } else {
+                 alert = "responsavel criada com sucesso.";
+                }
+                setTimeout(() => { window.location.reload(); }, 3000);
+            }
+        });
+        xhr.open("POST", url);
+        xhr.send(dados);
+    } else {
+		alert = "Favor preencha.";
+		alert ="Mensagens do sistema";
+    }
 }
-function produto_delete_db(tx)
-{
-	var produto_id_delete = $("#produto_id_delete").val();
-	tx.executeSql("DELETE FROM produto WHERE id = " + produto_id_delete);
-	listar_view();
+
+function adicionar3() {
+    let url = "http://localhost/avaliacao/src/controll/routes/route.Realizar.php";
+    let idp = document.querySelector("#id_porduto");
+	let idc = document.querySelector("#id_com");
+    let q = document.querySelector("#quantidade");
+    let p = document.querySelector("#preco");
+
+    if (idp.value != "" && idc.value != ""  && q.value != ""  && p.value != "") {
+        let dados = new FormData();
+        dados.append("id_produto", idp.value);
+		dados.append("id_com", idc.value);
+        dados.append("quantidade", q.value);
+        dados.append("preco", p.value);
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                   alert= resp.erro;
+                } else {
+                 alert = "venda criada com sucesso.";
+                }
+                setTimeout(() => { window.location.reload(); }, 3000);
+            }
+        });
+        xhr.open("POST", url);
+        xhr.send(dados);
+    } else {
+		alert = "Favor preencha.";
+		alert ="Mensagens do sistema";
+    }
 }
-function compra_insert_db(tx)
-{
-	var qtd_estoque = 0;
 
-	var valor_total = (pç * quant);
+function delProduto(p) {
+    let url = "http://localhost/avaliacao/src/controll/routes/route.Produtos.php";
+    let id = p.parentNode.parentNode.cells[0].innerText;
+    let dados = "id_produto=" + id;
+    if (window.confirm("Confirma Exclusão do id " + id + "?")) {
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                    msg.innerHTML = resp.erro;
+                } else {
+                    msg.innerHTML = "Pessoa excluída com sucesso.";
+                }
+                setTimeout(() => { window.location.reload(); }, 3000);
+            }
+        });
+        xhr.open("DELETE", url);
+        xhr.send(dados);
+    }
+}
 
-	tx.executeSql('SELECT * FROM produto WHERE id = '+ id_prod_com + '', [], function(tx,results) 
-	{
-		for (var i = 0; i < results.rows.length; i++)
-		{
-			qtd_estoque = results.rows.item(i).qtd_estoque;
-		}
-		if (qtd_estoque < quant) 
-		{
-			navigator.notification.beep(1);
+function delComercializar(c) {
+    let url = "http://localhost/avaliacao/src/controll/routes/route.Comercializar.php";
+    let id = c.parentNode.parentNode.cells[0].innerText;
+    let dados = "id_com=" + id;
+    if (window.confirm("Confirma Exclusão do id " + id + "?")) {
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                    msg.innerHTML = resp.erro;
+                } else {
+                    msg.innerHTML = "Pessoa excluída com sucesso.";
+                }
+                setTimeout(() => { window.location.reload(); }, 3000);
+            }
+        });
+        xhr.open("DELETE", url);
+        xhr.send(dados);
+    }
+}
 
-			//Emite uma mensagem caso a compra exceda o estoque disponível
-			return alert('Estoque insuficiente para compra'); 
-		}
-		else
-		{
-			//Emite mensagem caso a compra seja sucedida
-			alert("Compra bem sucedida!") 
-		}
+function delRealizar(r) {
+    let url = "http://localhost/avaliacao/src/controll/routes/route.Realizar.php";
+    let id = r.parentNode.parentNode.cells[0].innerText;
+    let dados = "id_produto=" + id;
+    if (window.confirm("Confirma Exclusão do id " + id + "?")) {
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                    msg.innerHTML = resp.erro;
+                } else {
+                    msg.innerHTML = "Pessoa excluída com sucesso.";
+                }
+                setTimeout(() => { window.location.reload(); }, 3000);
+            }
+        });
+        xhr.open("DELETE", url);
+        xhr.send(dados);
+    }
+}
 
-		//Insert na tabela de compras e update na tabela de produto pra diminuir o valor do estoque
-		tx.executeSql('INSERT INTO compra (id_prod, qtd_compra, valor_total) VALUES ("' + id_prod_com + '", "' + quant + '", "' + valor_total + '")');
-		tx.executeSql('UPDATE produto SET estoque = (estoque - "' + quant + '") WHERE id = "' + id_prod_com + '"');
+function calcular1(){    
+	var x=document.getElementById("quantidade1").value; 
+	var a=document.getElementById("preco1").value;    
+    var total1=x*a;    
+    document.getElementById("total1").innerHTML="R$"+total1+",00";
+}
 
-	}, null);
+function calcular2(){    
+    var x=document.getElementById("quantidade2").value; 
+	var a=document.getElementById("preco2").value;    
+    var total2=x*a;    
+    document.getElementById("total2").innerHTML="R$"+total2+",00";
+}
 
-	//Atualiza o carrinho
-	compra_view();
-	produto_view();
-
-	//Volta pra tela que lista os produtos
-	tela_comprar_mostrar_tela_padrao();
+function calcular3(){    
+    var x=document.getElementById("quantidade3").value; 
+	var a=document.getElementById("preco3").value;    
+    var total3=x*a;    
+    document.getElementById("total3").innerHTML="R$"+total3+",00";
 }
